@@ -14,7 +14,7 @@ function _project_position(scene::Scene, space, point, model, yflip::Bool)
     clip = Makie.space_to_clip(scene.camera, space) * model * p4d
     @inbounds begin
         # between -1 and 1
-        p = (clip ./ clip[4])[Vec(1, 2)]
+        p = (clip ./ max(1e-9, clip[4]))[Vec(1, 2)]
         # flip y to match cairo
         p_yflip = Vec2f(p[1], (1f0 - 2f0 * yflip) * p[2])
         # normalize to between 0 and 1

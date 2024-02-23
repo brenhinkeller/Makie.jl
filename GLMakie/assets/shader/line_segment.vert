@@ -45,5 +45,6 @@ void main()
     g_color = to_color(color, color_map, color_norm, index);
     g_thickness = px_per_unit * thickness;
     gl_Position = projectionview * model * to_vec4(vertex);
+    gl_Position.w = max(0.0, gl_Position.w);
     gl_Position.z += gl_Position.w * depth_shift;
 }

@@ -59,5 +59,6 @@ void main()
     #else
         gl_Position = to_vec4(vertex);
     #endif
+    gl_Position.w = max(0.0, gl_Position.w);
     gl_Position.z += gl_Position.w * depth_shift;
 }

@@ -128,6 +128,7 @@ function lines_vertex_shader(uniforms, attributes, is_linesegments) {
 
             vec3 screen_space(vec3 point) {
                 vec4 vertex = projectionview * model * vec4(point, 1);
+                vertex.w = max(0.0, vertex.w);
                 return vec3(
                     (0.5 * vertex.xy / vertex.w + 0.5) * px_per_unit * resolution,
                     vertex.z / vertex.w + depth_shift
@@ -400,6 +401,7 @@ function lines_vertex_shader(uniforms, attributes, is_linesegments) {
 
             vec3 screen_space(vec3 point) {
                 vec4 vertex = projectionview * model * vec4(point, 1);
+                vertex.w = max(0.0, vertex.w);
                 return vec3(
                     (0.5 * vertex.xy / vertex.w + 0.5) * px_per_unit * resolution,
                     vertex.z / vertex.w + depth_shift
