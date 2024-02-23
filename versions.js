@@ -1,3 +1,3 @@
-var DOCUMENTER_NEWEST = "v0.20";
+var DOCUMENTER_NEWEST = "v0.21";
 var DOCUMENTER_STABLE = "stable";
 
