@@ -607,3 +607,18 @@ end
 @reference_test "Heatmap 3D" begin
     heatmap(-2..2, -1..1, RNG.rand(100, 100); axis = (; type = LScene))
 end
+
+@reference_test "Clipped Lines" begin
+    # test for #3544, #3584
+    x, y = collect(-8:0.5:8), collect(-8:0.5:8)
+    z = [sinc(√(X^2 + Y^2) / π) for X ∈ x, Y ∈ y]
+
+    f, a, p = scatter(x, y, z)
+    wireframe!(a, x, y, z, color = :black)
+
+    center!(a.scene)
+    a.show_axis[] = false
+    zoom!(a.scene, 0.1)
+    cameracontrols(a).settings.center[] = false # avoid recenter on display
+    f
+end
